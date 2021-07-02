@@ -5,6 +5,9 @@ bcrypt installé dans le backend
 jsonwebtoken installé dans le backend
 dotenv installé sur le dossier p6
 multer installé dans le backend
+cookie-parser installé dans le backend (pas utilisé)
+express session instalé dans le backend
+popups instalé dans le backend
 
 dossier controller ok
 dossier model user ok
