@@ -1,39 +1,43 @@
-*Bienvenu sur l'API de So Pekocko*
+*Welcome to the So Pekocko API*.
 
-Pour l'ancer l'application Procéder comme suit!
+To create the application proceed as follows!
 
 *1: Frontend *
 
-Pour commencer, cloner le repo suivant dans un dossier.
+To start, clone the following repo into a folder.
 https://github.com/OpenClassrooms-Student-Center/dwj-projet6
 
-Pour faire fonctionner le projet, vous devez installer :
-- [NodeJS](https://nodejs.org/en/download/) en version 12.14 ou 14.0 
-- [Angular CLI](https://github.com/angular/angular-cli) en version 7.0.2.
-- [node-sass](https://www.npmjs.com/package/node-sass) : attention à prendre la version correspondante à NodeJS. Pour Node 14.0 par exemple, installer node-sass en version 4.14+.
+To make the project work, you need to install :
+- [NodeJS](https://nodejs.org/en/download/) in version 12.14 or 14.0 
+- Angular CLI](https://github.com/angular/angular-cli) in version 7.0.2.
+- [node-sass](https://www.npmjs.com/package/node-sass) : be careful to take the version corresponding to NodeJS. For Node 14.0 for example, install node-sass in version 4.14+.
 
-Sur Windows, ces installations nécessitent d'utiliser PowerShell en tant qu'administrateur.
+On Windows, these installations require using PowerShell as administrator.
 
 ## Development server
 
-Démarrer ng serve pour avoir accès au serveur de développement. Rendez-vous sur http://localhost:4200/. L'application va se recharger automatiquement si vous modifiez un fichier source.
+Start ng serve to access the development server. Go to http://localhost:4200/. The application will reload automatically if you modify a source file.
 
 
 *2: Backend *
 
-Pour commencer, cloner le repo suivant dans le dossier racine de votre projet.
+To start, clone the following repo into your project's root folder.
+https://github.com/AlexPYgit/P6-payet-alexis.git
 
-Pour faire fonctionner le projet, vous devez installer les différent packages (npm):
+To make the project work, you need to install the different packages (npm):
 
--express: instalé sur le dossier backend
--Mongoose: instalé sur le dossier  backend
--mongoose-unique-validator: installé sur le backend
--bcrypt: installé dans le backend
--jsonwebtoken: installé dans le backend
--dotenv: installé sur le dossier backend
--multer: installé sur le dossier le backend
+-express: installed on the backend folder
+-Mongoose: installed on the backend folder
+-mongoose-unique-validator: installed on the backend
+-bcrypt: installed in the backend
+-jsonwebtoken: installed in the backend
+-dotenv: installed on the backend folder
+-multer: installed on the backend folder
 
-Pour démarrer l'api taper dans le terminal la commande node server.js depuis le backend.
+To start the api type in the terminal the command node server.js from the backend.
 
-** Vous pouvais désormais naviguer sur l'application et éxecuter les différentes oppérations prévus pour cette aplication.**
+** You can now navigate the application and perform the various operations for this application.
 
+
+
+Translated with www.DeepL.com/Translator (free version)

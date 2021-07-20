@@ -3,8 +3,19 @@ const Sauces = require('../models/Sauces');
 const fs = require('fs');
 
 exports.creatingSauce = ( req, res, next) => {
+    const validation = {...req.body.sauce({name})};
+
+    console.log(validation);
+    // if(validation.trim() ==""){
+
+    //     console.log(`c'est vide !`);
+    // }else{
+    //     console.log(validation.trim());
+    // }
+
     const sauceObject = JSON.parse(req.body.sauce);
-    delete sauceObject._id;
+    console.log(req.body.sauce)
+    delete sauceObject._id;    
     const sauces = new Sauces({ 
        description : sauceObject.description,
        dislikes : 0,
