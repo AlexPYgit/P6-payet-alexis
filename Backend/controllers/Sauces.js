@@ -2,25 +2,25 @@
 const Sauces = require('../models/Sauces');
 const fs = require('fs');
 
+// create a new sauce
 exports.creatingSauce = ( req, res, next) => {
     const sauceObject = JSON.parse(req.body.sauce);
-    console.log(sauceObject);
-    if (!sauceObject.name.trim()
-    || !sauceObject.description.trim()
-    || !sauceObject.manufacturer.trim()
-    || !sauceObject.mainPepper.trim()
-     === "")
+    const isNotEmpty = (textInput = "", regex = /([^\s])/) => regex.test(textInput);
+    // verify if the input is empty
+    if ( !isNotEmpty(sauceObject.name) ||
+    !isNotEmpty(sauceObject.manufacturer)  ||
+    !isNotEmpty(sauceObject.description)  ||
+    !isNotEmpty(sauceObject.mainPepper) )
     {
         throw 'Input is empty !';
     }else{
-        console.log(sauceObject.name);
         delete sauceObject._id;    
         const sauces = new Sauces({ 
            description : sauceObject.description,
            dislikes : 0,
            heat : sauceObject.heat,
            likes : 0,
-           mainPeper : sauceObject.mainPepper,
+           mainPepper : sauceObject.mainPepper,
            manufacturer : sauceObject.manufacturer,
            name : sauceObject.name,
            userId : sauceObject.userId,
@@ -32,6 +32,7 @@ exports.creatingSauce = ( req, res, next) => {
     }
 };
 
+// user's note
 exports.liked = (req, res, next) => {
     const userId = req.body.userId;
      Sauces.findOne({_id : req.params.id, usersLiked : req.body.userId}, {usersLiked: 1,_id:0, usersDisliked : 1})
@@ -58,26 +59,27 @@ exports.liked = (req, res, next) => {
                                       .catch( error => res.status(400).json({ error }));
                             }
                         }
-             
-                console.log(sauces);
-                res.status(200).json({msg: 'ok'})
+                    res.status(200).json({msg: 'ok'})
             
             })
             .catch(error => res.status(400).json({error}));
 };
 
+// show all sauce
 exports.getAllSauce=(req, res, next) => {
     Sauces.find()
     .then( sauces => res.status(200).json(sauces))
     .catch( error  => res.status(400).json({ error }));
 }
 
+// select one sauce
 exports.getOneSauce = (req, res, next) => {
     Sauces.findOne({_id : req.params.id})
     .then( sauces => res.status(200).json(sauces))
     .catch( error => res.status(404).json({ error}));
 };
 
+// modify one sauce
 exports.modifySauce = (req, res, next) => {
     const sauceObject = req.file ? 
     { ...JSON.parse(req.body.sauce),
@@ -98,6 +100,7 @@ exports.modifySauce = (req, res, next) => {
     .catch( error => res.status(400).json({ error }));
 };
 
+// delete one sauce
 exports.deleteSauce = (req, res, next) => {
     Sauces.findOne({_id : req.params.id})
     .then( sauce => {
