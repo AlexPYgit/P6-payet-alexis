@@ -25,9 +25,9 @@ mongoose.connect(`mongodb+srv://${User_db}:${MDP_db}@cluster0.2aep0.mongodb.net/
 app.disable('x-powered-by');
 
 app.use((req, res, next) => {
- res.setHeader('Access-Control-Allow-Origin', '*');// permet l'acces à tous
- res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization'); //détail le type de header accépté
- res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');//détaille les action possible sur l'api
+ res.setHeader('Access-Control-Allow-Origin', '*');
+ res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization'); 
+ res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
  next();
 });
 
