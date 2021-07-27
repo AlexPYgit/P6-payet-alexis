@@ -79,25 +79,38 @@ exports.getOneSauce = (req, res, next) => {
     .catch( error => res.status(404).json({ error}));
 };
 
+
 // modify one sauce
 exports.modifySauce = (req, res, next) => {
-    const sauceObject = req.file ? 
-    { ...JSON.parse(req.body.sauce),
+    console.log(req.body);
+    const validinput = req.body;
+    const isNotEmpty = (textInput = "", regex = /([^\s])/) => regex.test(textInput);
+    // verify if the input is empty
+    if( !isNotEmpty(validinput.name) ||
+    !isNotEmpty(validinput.manufacturer)  ||
+    !isNotEmpty(validinput.description)  ||
+    !isNotEmpty(validinput.mainPepper) )
+    {
+        throw 'Input is empty !';
+    }
+        const sauceObject = req.file ? 
+        { ...JSON.parse(req.body.sauce),
+            usersLiked : [],
+            usersDisliked : [],
+            likes : 0,
+            dislikes : 0,
+            imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`}
+        :
+        {...req.body,
         usersLiked : [],
         usersDisliked : [],
         likes : 0,
         dislikes : 0,
-        imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`}
-    :
-    {...req.body,
-    usersLiked : [],
-    usersDisliked : [],
-    likes : 0,
-    dislikes : 0,
-    }
-    Sauces.updateOne({ _id : req.params.id}, {...sauceObject,  _id : req.params.id})
-    .then( () => res.status(200).json({ message : ' Objet modifié !'}))
-    .catch( error => res.status(400).json({ error }));
+        }
+        Sauces.updateOne({ _id : req.params.id}, {...sauceObject,  _id : req.params.id})
+        .then( () => res.status(200).json({ message : ' Objet modifié !'}))
+        .catch( error => res.status(400).json({ error }));
+    
 };
 
 // delete one sauce
