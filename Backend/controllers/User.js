@@ -5,7 +5,6 @@ const bcrypt = require('bcrypt');
 require('dotenv').config({path: '.env'});
 const SECRET_TOKEN = process.env.SECRET_TOKEN;
 
-
 exports.signup = (req, res, next) => {
     bcrypt.hash(req.body.password, 10)
     .then( hash => {
@@ -15,9 +14,9 @@ exports.signup = (req, res, next) => {
         })
         user.save()
         .then( () => res.status(201).json({message : "Utilisateur crée !" }))
-        .catch( error => res.status(400).json({ error }));
+        .catch( error => res.status(400).json( {error  : "Erreur d'enregistrement du compte"} ));
     })
-    .catch(error => res.status(500).json({error}));
+    .catch(error => res.status(500).json({error : 'Erreur de création du compte'}));
 };
 
 exports.login= (req, res, next)=> {
@@ -40,7 +39,7 @@ exports.login= (req, res, next)=> {
                         )
                 });
             })
-            .catch(error => res.status(500).json({error}));
+            .catch(error => res.status(500).json({error : 'Erreur vérification mot de pass'}));
     })
-    .catch( error => res.status(500).json({error}));
+    .catch( error => res.status(500).json({error: "Erreur survenu pendant la connexion au compte"}));
 };

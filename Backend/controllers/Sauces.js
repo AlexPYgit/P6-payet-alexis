@@ -82,7 +82,6 @@ exports.getOneSauce = (req, res, next) => {
 
 // modify one sauce
 exports.modifySauce = (req, res, next) => {
-    console.log(req.body);
     const validinput = req.body;
     const isNotEmpty = (textInput = "", regex = /([^\s])/) => regex.test(textInput);
     // verify if the input is empty
