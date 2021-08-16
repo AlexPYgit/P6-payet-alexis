@@ -28,7 +28,7 @@ exports.creatingSauce = ( req, res, next) => {
         });
     sauces.save()
     .then(() => res.status(201).json({ message: 'Objet crée ! ' }))
-    .catch( error => res.status(400).json({error}));
+    .catch( error => res.status(400).json({error :" Erreur : l'objet n'a pas pu être créé"}));
     }
 };
 
@@ -45,38 +45,38 @@ exports.liked = (req, res, next) => {
                     } else if( req.body.like === -1){
                         Sauces.updateOne({_id : req.params.id}, {$push:{usersDisliked: userId }, $inc:{dislikes: +1}} )
                         .then( () => res.status(200).json({ message : ' Objet modifié !'}))
-                        .catch( error => res.status(400).json({ error }));
+                        .catch( error => res.status(400).json({ error :"erreur : objet non modifié" }));
                     } else if(req.body.like === 0){
                             Sauces.updateOne({_id : req.params.id}, {$pull:{usersDisliked: userId }, $inc:{dislikes: -1}})
                                 .then( () => res.status(200).json({ message : ' Objet modifié !'}))
-                                .catch( error => res.status(400).json({ error }));
+                                .catch( error => res.status(400).json({ error :"erreur : objet non modifié" }));
                       }
                         }else {
                             if(req.body.like === 0){
                               console.log('voila 0')
                                   Sauces.updateOne({_id : req.params.id}, {$pull:{usersLiked: userId }, $inc:{likes: -1}})
                                       .then( () => res.status(200).json({ message : ' Objet modifié !'}))
-                                      .catch( error => res.status(400).json({ error }));
+                                      .catch( error => res.status(400).json({ error :"erreur : objet non modifié" }));
                             }
                         }
                     res.status(200).json({msg: 'ok'})
             
             })
-            .catch(error => res.status(400).json({error}));
+            .catch(error => res.status(400).json({error:" Erreur lors de la récupération des données" }));
 };
 
 // show all sauce
 exports.getAllSauce=(req, res, next) => {
     Sauces.find()
     .then( sauces => res.status(200).json(sauces))
-    .catch( error  => res.status(400).json({ error }));
+    .catch( error  => res.status(400).json({ error :" Erreur lors de la récupération des données" }));
 }
 
 // select one sauce
 exports.getOneSauce = (req, res, next) => {
     Sauces.findOne({_id : req.params.id})
     .then( sauces => res.status(200).json(sauces))
-    .catch( error => res.status(404).json({ error}));
+    .catch( error => res.status(404).json({ error :" Erreur lors de la récupération des données"}));
 };
 
 
@@ -108,7 +108,7 @@ exports.modifySauce = (req, res, next) => {
         }
         Sauces.updateOne({ _id : req.params.id}, {...sauceObject,  _id : req.params.id})
         .then( () => res.status(200).json({ message : ' Objet modifié !'}))
-        .catch( error => res.status(400).json({ error }));
+        .catch( error => res.status(400).json({ error :" Erreur : L'objet n'a pas pu être modifié" }));
     
 };
 
@@ -120,8 +120,8 @@ exports.deleteSauce = (req, res, next) => {
         fs.unlink(`images/${filename}`,() => {
             Sauces.deleteOne({ _id : req.params.id})
             .then( () => res.status(200).json({message : ' Object suprimé !'}))
-            .catch( error => res.status(400).json({ error}));
+            .catch( error => res.status(400).json({ error :"L'objet n'a pas pu être suprimé"}));
         })
     })
-    .catch( error => res.status(500).json({error}));
+    .catch( error => res.status(500).json({error :" Une erreur est survenue, veuillez réessayer"}));
 };
